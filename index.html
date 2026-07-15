@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NANO OS — Premium Desktop</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Boot Screen -->
+<div id="boot-screen" role="status" aria-label="Loading LazyOS">
+  <div class="boot-logo">
+    <svg class="boot-logo-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1.5" y="1.5" width="29" height="29" rx="7" fill="var(--accent)" opacity="0.15"/>
+      <rect x="1.5" y="1.5" width="29" height="29" rx="7" stroke="var(--accent)" stroke-width="2" fill="none"/>
+      <path d="M9 15 L14 20 L23 9" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    Lazy<span>OS</span>
+  </div>
+  <div class="boot-bar-track"><div class="boot-bar-fill"></div></div>
+</div>
+
+<!-- Mobile Block -->
+<div id="mobile-block">
+  <div class="mb-icon"><i class="fa-solid fa-display"></i></div>
+  <h2>Desktop Only</h2>
+  <p>LazyOS is designed for desktop experience. Please open this on a computer.</p>
+</div>
+
+<!-- Wallpaper -->
+<div id="wallpaper" class="wallpaper-sonoma" aria-hidden="true"></div>
+
+<!-- Menu Bar -->
+<header id="menubar" role="menubar" aria-label="Menu bar">
+  <div class="menubar-left">
+    <button id="app-menu-launcher" title="Applications" aria-label="Applications">
+      <i class="fa-solid fa-grid-2"></i>
+    </button>
+    <div class="menubar-item app-name" id="menubar-appname" data-menu="app">LazyOS</div>
+    <div id="workspace-indicator" title="Switch Workspace">
+      <i class="fa-solid fa-layer-group"></i> <span id="ws-label">1</span>
+    </div>
+    <div class="menubar-item" data-menu="file">File</div>
+    <div class="menubar-item" data-menu="edit">Edit</div>
+    <div class="menubar-item" data-menu="view">View</div>
+    <div class="menubar-item" data-menu="window">Window</div>
+    <div class="menubar-item" data-menu="help">Help</div>
+  </div>
+  <div class="menubar-right">
+    <div class="menubar-item" id="menubar-wifi" title="Wi-Fi" aria-label="Wi-Fi"><i class="fa-solid fa-wifi"></i></div>
+    <div class="menubar-item" id="menubar-bluetooth" title="Bluetooth" aria-label="Bluetooth"><i class="fa-brands fa-bluetooth-b"></i></div>
+    <div class="menubar-item" id="menubar-battery" title="Battery" aria-label="Battery"><i class="fa-solid fa-battery-three-quarters"></i></div>
+    <div class="menubar-item" id="menubar-volume" title="Volume" aria-label="Volume"><i class="fa-solid fa-volume-high"></i></div>
+    <div class="menubar-item" id="menubar-search" title="Search (Cmd+Space)" aria-label="Spotlight search"><i class="fa-solid fa-magnifying-glass"></i></div>
+    <div class="menubar-item" id="menubar-ctrl" title="Control Center" aria-label="Control Center"><i class="fa-solid fa-sliders"></i></div>
+    <div class="menubar-item" id="menubar-notif" title="Notifications" aria-label="Notifications"><i class="fa-solid fa-bell"></i></div>
+    <div class="menubar-item" id="menubar-clock" aria-label="Clock"></div>
+  </div>
+</header>
+
+<!-- Dropdown Menus Container -->
+<div id="dropdown-container" aria-hidden="true"></div>
+
+<!-- Desktop -->
+<main id="desktop" role="main" aria-label="Desktop">
+  <div class="desktop-icons" id="desktop-icons"></div>
+</main>
+
+<!-- Selection Box -->
+<div id="selection-box" aria-hidden="true"></div>
+
+<!-- Snap Preview -->
+<div id="snap-preview" aria-hidden="true"></div>
+
+<!-- Dock -->
+<nav id="dock-wrapper" role="toolbar" aria-label="Dock">
+  <div class="dock-left" id="dock-left">
+    <!-- Populated by JS -->
+  </div>
+  <div class="dock-right">
+    <button class="dock-show-apps" id="dock-show-apps" title="Show All Apps (Launchpad)" aria-label="Show All Apps">
+      <i class="fa-solid fa-grid-2"></i>
+    </button>
+    <div class="dock-ws-sep"></div>
+    <div id="dock-workspaces">
+      <div class="dock-ws-dot active" data-ws="0" title="Workspace 1"></div>
+      <div class="dock-ws-dot" data-ws="1" title="Workspace 2"></div>
+      <div class="dock-ws-dot" data-ws="2" title="Workspace 3"></div>
+    </div>
+    <div class="dock-ws-sep"></div>
+    <button class="dock-show-desktop" id="dock-show-desktop" title="Show Desktop" aria-label="Show Desktop">
+      <i class="fa-solid fa-desktop"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- App Grid -->
+<div id="app-grid">
+  <div class="app-grid-header">Applications</div>
+  <div class="app-grid-items" id="app-grid-items"></div>
+</div>
+
+<!-- Spotlight -->
+<div id="spotlight-overlay" role="dialog" aria-label="Spotlight search" aria-modal="true">
+  <div id="spotlight-box">
+    <input type="text" id="spotlight-input" placeholder="Search apps, files, and more..." autocomplete="off" aria-label="Search">
+    <div id="spotlight-results" role="listbox"></div>
+  </div>
+</div>
+
+<!-- Context Menu -->
+<div id="context-menu" class="context-menu" role="menu" aria-label="Context menu"></div>
+
+<!-- Control Center -->
+<div id="control-center" role="dialog" aria-label="Control Center"></div>
+
+<!-- Calendar -->
+<div id="calendar-popup" role="dialog" aria-label="Calendar"></div>
+
+<!-- Notifications -->
+<div id="notification-container" aria-live="polite" aria-label="Notifications"></div>
+
+<!-- Windows Container -->
+<div id="windows-container" aria-label="Application windows"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
